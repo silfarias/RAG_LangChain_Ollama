@@ -8,8 +8,8 @@ Este proyecto consiste en la implementación de un sistema de Recuperación de I
 
 La estructura de carpetas del proyecto es la siguiente:
 
-- **`/frontend`**: Contiene la interfaz de usuario, donde los usuarios pueden hacer preguntas al sistema.
-- **`/backend`**: Implementado con Node.js y Express, este módulo actúa como intermediario entre el frontend y el motor de procesamiento.
+- **`/client`**: Contiene la interfaz de usuario, donde los usuarios pueden hacer preguntas al sistema.
+- **`/server`**: Implementado con Node.js y Express, este módulo actúa como intermediario entre el frontend y el motor de procesamiento.
 - **`/python`**: Contiene el script `main.py`, encargado de procesar las consultas, realizar la búsqueda en la base de datos vectorial y obtener la respuesta final.
 
 ## Funcionalidad del Sistema
