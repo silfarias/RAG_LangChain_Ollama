@@ -159,3 +159,21 @@ body {
   outline: 1px solid #1d1d1b;
   color: #1d1d1b;
 }
+
+.userMessage {
+  text-align: right;
+  color: #1d1d1b;
+  background-color: #CBD1D7;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
+
+.botMessage {
+  text-align: left;
+  color: #1d1d1b;
+  background-color: #74D7F1;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
