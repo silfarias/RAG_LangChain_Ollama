@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import path from 'node:path';
 
+// función para ejecutar el script de Python
 export const executePythonScript = (question) => {
     return new Promise((resolve, reject) => {
         // ejecuta el script de Python

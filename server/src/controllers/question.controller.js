@@ -2,7 +2,7 @@ import { executePythonScript } from "../services/python.service.js";
 
 export const askQuestion = async (req, res) => {
     try {
-        const { question } = req.body;
+        const { question } = req.body; // obtenemos la pregunta del cuerpo de la solicitud
         if (!question) {
             return res.status(400).json({ error: 'La pregunta es requerida.' });
         }
