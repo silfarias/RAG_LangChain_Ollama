@@ -1,5 +1,5 @@
 import { router } from "./src/routes/question.routes.js";
-import { env } from "./src/config/env.js";
+import { environment } from "./src/config/env.js";
 import express from "express";
 import cors from "cors";
 
@@ -10,6 +10,6 @@ app.use(express.json());
 
 app.use('/api', router);
 
-app.listen(env.PORT, () => {
-    console.log(`Server running on http://localhost:${env.PORT}`);
+app.listen(environment.PORT, () => {
+    console.log(`Server running on http://localhost:${environment.PORT}`);
 });
