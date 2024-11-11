@@ -83,5 +83,5 @@ class RAGService: # servicio principal para manejar RAG
     # método para obtener una respuesta a una pregunta
     def ask_question(self, question: str) -> str:
         # procesa la pregunta y devuelve la respuesta
-        response = self.qa({"query": question})
+        response = self.qa.invoke({"query": question})
         return response["result"]

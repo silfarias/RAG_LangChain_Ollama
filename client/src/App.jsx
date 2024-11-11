@@ -26,6 +26,7 @@ function App() {
   useEffect(() => {
     if (response) {
       setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: response }]);
+      setQuestion("");
     }
   }, [response]);
 
