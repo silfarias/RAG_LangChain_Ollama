@@ -6,7 +6,7 @@ import { BsRobot } from "react-icons/bs";
 function App() {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
-  const { askQuestion, response, loading } = useAskRag();
+  const { askQuestion, response, setResponse, loading } = useAskRag();
 
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
@@ -29,8 +29,10 @@ function App() {
   useEffect(() => {
     if (response) {
       setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: response }]);
+      setResponse(null); // Limpiamos el response después de actualizar los mensajes
     }
-  }, [response]);
+  }, [response, setResponse]);
+  
 
   return (
     <div id='box-body-app'>
