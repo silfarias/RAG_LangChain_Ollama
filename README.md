@@ -1,43 +1,52 @@
-# Trabajo Práctico Final: Implementación de un Sistema RAG usando LangChain y Ollama
+# Trabajo Práctico Final: Sistema de Recuperación de Información Asistida por Generación (RAG) con LangChain y Ollama
 
 ## Descripción
 
-Este proyecto consiste en la implementación de un sistema de Recuperación de Información Asistida por Generación (RAG) utilizando LangChain y el modelo Llama3 de Ollama. El sistema permite responder preguntas de manera eficiente y precisa, recuperando información relevante desde una base de datos de documentos en formato de "embeddings" y generando respuestas con un modelo de lenguaje natural.
+Este proyecto implementa un sistema de Recuperación de Información Asistida por Generación (RAG) utilizando LangChain y el modelo Llama3 de Ollama. El sistema permite responder a preguntas de manera precisa, combinando una búsqueda eficiente en una base de datos de vectores con un modelo de lenguaje natural que genera respuestas en lenguaje natural basadas en la información recuperada. Este enfoque resulta especialmente útil para consultas complejas que requieren combinar múltiples fragmentos de información.
 
 ## Estructura del Proyecto
 
 La estructura de carpetas del proyecto es la siguiente:
 
-- **`/client`**: Contiene la interfaz de usuario, donde los usuarios pueden hacer preguntas al sistema.
-- **`/server`**: Implementado con Node.js y Express, este módulo actúa como intermediario entre el frontend y el motor de procesamiento.
-- **`/python`**: Contiene el script `main.py`, encargado de procesar las consultas, realizar la búsqueda en la base de datos vectorial y obtener la respuesta final.
+- **`/client`**: Contiene la interfaz de usuario, desarrollada en React, que permite a los usuarios realizar consultas al sistema de manera sencilla.
+- **`/server`**: Implementado en Python con FastAPI, este directorio contiene toda la lógica del backend, incluyendo la gestión de rutas, el servicio de búsqueda de embeddings, y la generación de respuestas.
 
 ## Funcionalidad del Sistema
 
-El sistema funciona de la siguiente manera:
+El sistema sigue un flujo de operación en varios pasos:
 
-1. **Interfaz de Usuario (Frontend)**: El usuario ingresa una consulta en la interfaz gráfica.
-2. **Llamada al Backend**: La consulta es enviada al servidor, implementado en Node.js con Express.
-3. **Procesamiento en Python**: El backend pasa la consulta al script `main.py` en el directorio de Python, donde se convierte en un vector numérico (embedding).
-4. **Búsqueda de Embeddings**: La consulta en formato de embedding se utiliza para buscar en la base de datos vectorial Chroma los fragmentos (chunks) de documentos más relevantes.
-5. **Generación de Respuesta (LLM)**: Los fragmentos relevantes se envían a Llama3, que genera una respuesta sintetizada en lenguaje natural.
-6. **Respuesta al Usuario**: La respuesta generada se envía de vuelta al frontend, donde el usuario puede visualizarla.
+1. **Interfaz de Usuario (Frontend)**: El usuario introduce una pregunta o consulta en la interfaz gráfica.
 
-## Componentes
+2. **Llamada al Backend (FastAPI)**: La consulta se envía al servidor, que utiliza FastAPI para gestionar las solicitudes HTTP de manera eficiente.
 
-- **Frontend**: Proporciona una interfaz para interactuar con el sistema. Es donde el usuario envía sus preguntas.
-- **Backend (Node.js y Express)**: Recibe las consultas del frontend, las envía al módulo de procesamiento en Python, y gestiona la comunicación entre el usuario y el sistema.
-- **Script de Procesamiento (Python)**: Convierte las consultas en embeddings y las busca en la base de datos vectorial para obtener información relevante.
-- **Base de Datos Vectorial (Chroma)**: Almacena los embeddings de los documentos, permitiendo realizar búsquedas eficientes basadas en similitudes.
-- **Modelo de Lenguaje (LLM - Llama3 de Ollama)**: Genera respuestas en lenguaje natural a partir de los fragmentos de texto recuperados.
+3. **Procesamiento de Embeddings**: El backend transforma la consulta en un vector numérico (embedding) que representa la pregunta en un espacio de alta dimensionalidad.
 
-## Requisitos
+4. **Búsqueda en Base de Datos Vectorial (Chroma)**: La consulta en formato embedding se utiliza para buscar en Chroma, una base de datos vectorial que almacena los embeddings de documentos. Los fragmentos de texto más relevantes (chunks) se recuperan según su similitud con la consulta.
 
-1. **Node.js** y **Express** para el backend.
-2. **Python 3.x** para el procesamiento de datos y la búsqueda en embeddings.
-3. **Chroma** como base de datos vectorial para almacenar y recuperar embeddings.
-4. **Ollama Llama3** como modelo de lenguaje para generar respuestas.
-5. **LangChain** para la integración de los distintos componentes del sistema.
+5. **Generación de Respuesta (LLM)**: Los fragmentos recuperados se envían a Llama3, un modelo de lenguaje natural, que utiliza estos fragmentos para generar una respuesta coherente y detallada en lenguaje natural.
+
+6. **Entrega de Respuesta**: La respuesta generada se envía de vuelta al frontend, donde el usuario puede visualizar la respuesta en la interfaz.
+
+
+## Componentes Principales
+
+- **Frontend**: Proporciona una interfaz intuitiva para que el usuario interactúe con el sistema, donde puede ingresar preguntas y recibir respuestas.
+
+- **Backend (FastAPI y Python)**: 
+    * Endpoint **api/ask**: Recibe las consultas del usuario y las envía al servicio de embeddings. 
+    * Servicio **rag_service.py**: Contiene la lógica de transformación de texto en embeddings y la gestión de consultas en la base de datos vectorial.
+
+- **Base de Datos Vectorial (Chroma)**:  Almacena los embeddings de documentos previamente procesados, permitiendo una búsqueda eficiente basada en similitud para encontrar los fragmentos relevantes.
+
+- **Modelo de Lenguaje (LLM - Llama3 de Ollama)**: Genera respuestas basadas en los fragmentos de texto recuperados, sintetizando información y proporcionando respuestas en lenguaje natural.
+
+## Tecnologías y Herramientas
+
+1. **FastAPI**: Framework web rápido y de alto rendimiento, ideal para construir APIs en Python.
+2. **Python 3.x**: Lenguaje de programación principal del backend.
+3. **Chroma**: Base de datos vectorial para almacenar y buscar embeddings, fundamental para la búsqueda de documentos relevantes.
+4. **Ollama Llama3**: Modelo de lenguaje natural avanzado utilizado para generar respuestas a partir de la información recuperada.
+5. **LangChain**: Biblioteca que facilita la integración y manejo de varios componentes del sistema, como la gestión de embeddings y la conexión con el modelo de lenguaje.
 
 ## Instalación y Configuración
 
@@ -45,52 +54,37 @@ El sistema funciona de la siguiente manera:
 ```bash
 git clone https://github.com/silfarias/RAG_LangChain_Ollama.git
 ```
-2. Moverse al directorio `python`:
-```bash
-cd python
-```
-3. Instalar las dependencias necesarias:
-```bash
-pip install -r requirements.txt
-```
 
-4. **Asegurarse de cargar el documento pdf especifico en la carpeta data**
-
-4. Salir del directorio python y dirigirse al directorio server, el cual es el backend del sistema:
-
+2. Dirigirse al directorio `server`:
 ```bash
 cd server
 ```
 
-5. Instalar las dependencias del backend:
-
+3. Instalar las dependencias requeridas para el servidor: 
 ```bash
-npm install
-```
-o 
-```bash
-yarn install
+pip install -r requirements.txt
 ```
 
-6. Iniciar el backend:
-```bash
-npm start
-```
-7. Abrir una nueva terminal y dirigirse al directorio frontend:
+4. **Carga de Documento en /data**: Asegúrarse de cargar el documento PDF necesario en la carpeta data, el cual se utilizará para generar los embeddings de la base de datos vectorial.
 
+5. Iniciar el backend con FastAPI:
 ```bash
-cd frontend
+uvicorn app.main:app --reload
 ```
 
-8. Instalar las dependencias del frontend:
+6. Abrir una nueva terminal y dirigirse al directorio client:
+```bash
+cd client
+```
 
+7. Instala las dependencias necesarias para el frontend:
 ```bash
 npm install
 ```
 
-9. Iniciar el frontend:
+8. Iniciar el proyecto:
 ```bash
 npm start
 ```
-
-10. Finalmente, en el navegador, acceder a la URL http://localhost:5173 para interactuar con el sistema.
+### Acceso a la Interfaz
+Una vez que ambos servidores (frontend y backend) estén en funcionamiento, puedes acceder a la interfaz del sistema en tu navegador en http://localhost:5173 para interactuar con el sistema RAG.

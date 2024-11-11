@@ -6,7 +6,7 @@ import { BsRobot } from "react-icons/bs";
 function App() {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
-  const { askQuestion, response, setResponse, loading } = useAskRag();
+  const { askQuestion, response, loading } = useAskRag();
 
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
@@ -16,23 +16,18 @@ function App() {
     e.preventDefault();
     if (!question.trim()) return;
 
-    // añade el mensaje del usuario al chat
     setMessages((prevMessages) => [...prevMessages, { sender: "user", text: question }]);
 
-    // envíamos pregunta al backend
     await askQuestion(question);
 
     setQuestion("");
   };
 
-  // se ejecuta cada vez que 'response' cambia
   useEffect(() => {
     if (response) {
       setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: response }]);
-      setResponse(null); // Limpiamos el response después de actualizar los mensajes
     }
-  }, [response, setResponse]);
-  
+  }, [response]);
 
   return (
     <div id='box-body-app'>
@@ -46,7 +41,7 @@ function App() {
           </div>
           <div id='boxChatMensajes'>
             <ul id='ulChat'>
-              {messages.map((msg, index) => (
+              { messages.map((msg, index) => (
                 <li key={index} className={msg.sender === "user" ? "userMessage" : "botMessage"}>
                   <strong>{msg.sender === "user" ? "Usuario:" : "IA:"}</strong> {msg.text}
                 </li>

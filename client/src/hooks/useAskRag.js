@@ -30,5 +30,5 @@ export const useAskRag = () => {
         }
     };
 
-    return { askQuestion, response, setResponse, loading };
+    return { askQuestion, response, loading };
 };
