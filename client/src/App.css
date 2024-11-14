@@ -1,179 +1,225 @@
-/*
-CELESTE: #74D7F1
-GRIS: #CBD1D7
-MARRON: #A38976
-
-*/
+:root {
+  --dark-blue: #021024;
+  --mid-blue: #052659;
+  --blue: #5483B3;
+  --light-blue: #7DA0CA;
+  --very-light-blue: #C1E8FF;
+}
 
 body {
   margin: 0;
   padding: 0;
-}
-
-@font-face {
-  font-family: 'Arcade2';
-  src: url('../src/fonts/Inlanders.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-#box-body-app {
-  width: 100%;
-  height: 50rem;
-  background: linear-gradient(to bottom, #74D7F1, #CBD1D7);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-#box-header {
-  width: 100%;
-  height: 6rem;
-  background-color: #CBD1D7;
+  font-family: 'Arcade2', sans-serif;
+  background-color: var(--dark-blue);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #74D7F1;
-  border-bottom: 2px solid black;
-}
-.colorBlack {
-  color: black;
+  height: auto;
+  background: linear-gradient(to bottom, var(--dark-blue), var(--mid-blue));
+  animation: fadeInBackground 1.5s ease-out;
 }
 
-#box-header h2 {
-  font-family: 'Arcade2';
-  font-size: 2.5rem;
-  text-shadow:
-        -1px -1px 0 #000,
-        /* Borde superior izquierdo */
-        1px -1px 0 #000,
-        /* Borde superior derecho */
-        -1px 1px 0 #000,
-        /* Borde inferior izquierdo */
-        1px 1px 0 #000,
-        /* Borde inferior derecho */
-        2px 2px 5px rgba(0, 0, 0, 0.7);
-    /* Sombra negra */
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-#boxChat {
-  width: 100%;
-  height: 31rem;
-  margin-top: 1.6rem;
-  display: flex;
-  flex-direction: column;
+.app-container {
+  width: 900px;
+  max-width: 900px;
+  background: var(--mid-blue);
+  border-radius: 12px;
+  padding: 2rem;
+  color: var(--very-light-blue);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.app-header {
   text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-#chat {
-  width: 85%;
-  height: 88%;
-  background-color: #f5f4f4;
-  border: 2px solid #1d1d1b;
-  border-radius: 5px 5px 0 0; /* Solo los bordes superiores redondeados */
-  border-bottom: none; /* Elimina el borde inferior */
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.2), 2px 0px 8px rgba(0, 0, 0, 0.2), -2px 0px 8px rgba(0, 0, 0, 0.2);
-}
-
-#boxChatOnline {
-  width: 100%;
-  height: 9%;
-  background-color: gainsboro;
-  border-bottom: 1.5px solid #1d1d1b;
-  border-radius: 5px 5px 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-#boxChatOnline h3 {
-  color: #1d1d1b;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  text-align: center;
-  font-size: 1.3rem;
-}
-
-#boxChatMensajes {
-  width: 100%;
-  height: 87%;
-  padding-top: 0.5rem;
-  overflow-y: scroll;
-}
-#boxChatMensajes ul{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-#ulChat{
-  display: flex;
-  flex-direction: column;
-}
-
-#boxInput {
-  width: 85%;
-  height: 12%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: gainsboro;
-
-  border: 2px solid #1d1d1b; /* Aplica el borde de 2px a todos los lados */
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), -2px 2px 8px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.2);
-  
-  border-radius: 0 0 5px 5px;
-}
-
-#boxInput input {
-  height: 2rem;
-  width: 70%;
-  border-radius: 5px;
-  margin-right: 0.3rem;
-  background-color: #F5F5F5;
-  border: 2px solid #1d1d1b;
-  color: #1d1d1b;
-}
-
-#boxInput button {
-  padding: 0.65rem;
-  background-color: #1d1d1b;
+  padding: 1rem;
+  background: var(--blue);
   border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-size: 0.9rem;
-  border: none;
-  transition: 0.3s;
-  width: 6rem;
-}
-#boxInput button:hover {
-  background: linear-gradient(to bottom right, white, #c7c7c6);
-  outline: 1px solid #1d1d1b;
-  color: #1d1d1b;
+  margin-bottom: 1.5rem;
 }
 
-.userMessage {
+.app-header h2 {
+  font-size: 2rem;
+  
+}
+
+.icon {
+  color: var(--very-light-blue);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-messages {
+  background: var(--light-blue);
+  width: 100%;
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chat-messages h3 {
+  margin: 0;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-message {
   text-align: right;
-  color: #1d1d1b;
-  background-color: #CBD1D7;
+  background-color: var(--very-light-blue);
   padding: 0.5rem;
   margin: 0.5rem;
-  border-radius: 5px;
+  border-radius: 10px;
+  color: var(--dark-blue);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.botMessage {
+.user-message:hover {
+  background-color: var(--blue);
+  transform: translateX(5px);
+}
+
+.bot-message {
   text-align: left;
-  color: #1d1d1b;
-  background-color: #74D7F1;
+  background-color: var(--blue);
   padding: 0.5rem;
   margin: 0.5rem;
-  border-radius: 5px;
+  border-radius: 10px;
+  color: var(--dark-blue);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.bot-message:hover {
+  background-color: var(--very-light-blue);
+  transform: translateX(-5px);
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 10px;
+  margin-right: 0.5rem;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-container input:focus {
+  background-color: #f1f1f1;
+  box-shadow: 0 0 5px var(--blue);
+}
+
+.input-container button {
+  padding: 0.75rem 1.5rem;
+  background: var(--blue);
+  color: var(--very-light-blue);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-container button:disabled {
+  background: var(--light-blue);
+  cursor: not-allowed;
+}
+
+.input-container button:hover:not(:disabled) {
+  background: var(--dark-blue);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInModal 1s ease-out;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-form {
+  background: var(--mid-blue);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  color: var(--very-light-blue);
+  opacity: 0;
+  animation: slideUpModal 1s ease-out forwards;
+}
+
+@keyframes slideUpModal {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.modal-form input:focus {
+  background-color: #f1f1f1;
+}
+
+
+.modal-form button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--blue);
+  border: none;
+  border-radius: 10px;
+  color: var(--very-light-blue);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-form button:hover {
+  background: var(--dark-blue);
 }
